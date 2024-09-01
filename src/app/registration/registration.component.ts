@@ -15,10 +15,14 @@ export class RegistrationComponent {
   onRegister(): void {
     this.authService.register(this.username, this.password).subscribe(
       response => {
+        alert('Registration successful!');
+        this.router.navigate(['/login']);  // Redirect to login page
         console.log('Registration successful:', response);
       },
       error => {
-        console.error('Registration failed:', error);
+        // On registration failure
+        alert('Registration failed! Please try again.');
+        console.error('Registration error:', error);
       }
     );
   }

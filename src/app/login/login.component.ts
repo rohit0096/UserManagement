@@ -20,6 +20,7 @@ export class LoginComponent {
         this.router.navigate(['/profile']);  // Redirect to profile page
       },
       error => {
+        alert('Username or Password is isInCorrect! Please try again.');
         console.error('Login failed:', error);
       }
     );
