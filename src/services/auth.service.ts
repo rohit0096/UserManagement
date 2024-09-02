@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { map, Observable } from 'rxjs';
 export class AuthService {
   private apiUrl = 'https://localhost:44390/api/Auth';  // Replace with your backend API URL
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router:Router) {}
 
   // Register User
   register(username: string, password: string): Observable<any> {
@@ -31,6 +32,7 @@ export class AuthService {
 // Logout User
 logout(): void {
   localStorage.removeItem('token');  // Remove token from localStorage
+  this.router.navigate(['/login']);
 }
 
    // Check if user is logged in

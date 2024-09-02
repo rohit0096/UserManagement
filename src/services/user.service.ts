@@ -21,4 +21,16 @@ import { Observable } from 'rxjs';
   
       return this.http.get(`${this.apiUrl}/profile`, { headers });
     }
+
+    updateProfile(file: File, uploadedDateTime: Date): Observable<any> {
+      const token = this.authService.getToken();
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      const formData = new FormData();
+      formData.append('fileUpload', file);
+      formData.append('uploadedDateTime', uploadedDateTime.toString());
+  
+      return this.http.put(`${this.apiUrl}/update-profile`, formData, {headers});
+    }
 }

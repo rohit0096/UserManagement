@@ -1,6 +1,19 @@
-<div *ngIf="userProfile">
-    <h2>User Profile</h2>
-    <p>Username: {{ userProfile.username }}</p>
-    <p>Email: {{ userProfile.email }}</p>
-  </div>
+<div class="container">
+    <div *ngIf="userProfile" class="profile-container">
+      <h2>User Profile</h2>
+      <p>Username: Welcome {{ userProfile.userName }}</p>
   
+      <form (ngSubmit)="onSubmit()" class="profile-form">
+        <div class="form-group">
+          <label for="fileUpload">Upload File:</label>
+          <input type="file" id="fileUpload" (change)="onFileChange($event)" />
+        </div>
+        <div class="form-group">
+          <label for="uploadedDateTime">Date and Time:</label>
+          <input type="datetime-local" id="uploadedDateTime" [(ngModel)]="uploadedDateTime" name="uploadedDateTime" />
+        </div>
+        <button type="submit" class="submit-button">Update Profile</button>
+      </form>
+      <button class="logout-button" (click)="logout()">Logout</button>
+    </div>
+  </div>
