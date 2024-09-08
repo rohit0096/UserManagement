@@ -24,7 +24,7 @@ import { AuthService } from '../../services/auth.service';
     ngOnInit(): void {
       this.userService.getUserProfile().subscribe(
         data => {
-        console.log('API Response:', data);  // Log the API response
+        console.log('API Response:', data);  
         this.userProfile = data;
         console.log('Username:', this.userProfile.username);  // Check if username is correctly assigned
         },
@@ -40,7 +40,7 @@ import { AuthService } from '../../services/auth.service';
      alert('User is not logged in');
      return; // Stop the process if the user is not logged in
     }
-      if (this.file) {
+      if (this.file && this.uploadedDateTime) {
         this.userService.updateProfile(this.file, this.uploadedDateTime)
           .subscribe(
             response => {
@@ -49,6 +49,7 @@ import { AuthService } from '../../services/auth.service';
               //console.log('Profile updated successfully', response);
             },
             error => {
+              alert('Error updating profile');
               console.error('Error updating profile', error);
             }
           );

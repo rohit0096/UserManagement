@@ -21,8 +21,9 @@ export class RegistrationComponent {
       },
       error => {
         // On registration failure
-        alert('Registration failed! Please try again.');
-        console.error('Registration error:', error);
+        const errorMessages = error.error.map((er: any) => er.description).join('\n');   
+        alert(`Registration failed! \n${errorMessages}`); 
+        console.error('Registration error:', error.code);
       }
     );
   }
